@@ -1,26 +1,24 @@
-This application demonstrates how to build single page modular web applicaton using require.js and backbone.js.
+<p>This application demonstrates how to build single page modular web applicaton using <b>require.js</b> and <b>backbone.js</b></p>
 
-Using build.js, the application is broken down into 2 modules: 
-'main' : 'modules/index/view' and 'modules/profile/view'
-'other' : 'modules/order/view' and 'modules/search/view'
+<p>Using <code>build.js</code>, the application is broken down into 2 modules: 
+<ul>
+<li><code>main</code> : <code>modules/index/view</code> and <code>modules/profile/view</code></li>
+<li><code>other</code> : <code>modules/order/view</code> and <code>modules/search/view</code></li>
+</ul>
+</p>
 
-So whenever you request for 'modules/index/view' or 'modules/profile/view', main.js is downloaded if not downloaded yet.
-Similarly when we request for 'modules/order/view' or 'modules/search/view', other.js is downloaded if not downloaded yet.
+<p>So whenever you request for <code>modules/index/view</code> or <code>modules/profile/view</code>, <code>main.js</code> is downloaded if not downloaded yet. Similarly when we request for <code>modules/order/view</code> or <code>modules/search/view</code>, <code>other.js</code> is downloaded if not downloaded yet. </p>
 
-This application has been return in response to a stackoverflow.com request. 
-This application can be futher modularized just by modifying build.js script and defining order, search, profile as independent modules.
+<p>This application can be futher modularized just by modifying <code>build.js</code> script and defining <code>order, search, profile</code> as independent modules. This ensures only those files related to a view which user is requesting for is downloaded.</p>
 
-This ensures only those files related to a view which user is requesting for is downloaded.
+<p>Build steps:</p>
+<pre>$ node r.js -o app/media/js/build.js</pre>
 
-Build steps:
-$ node r.js -o app/media/js/build.js
+<p>Output will be stored in <code>build</code> folder. You need to create a soft link from Apache folder <code>/var/www</code> to this specific folder.</p>
 
-Output will be stored in 'build' folder. You need to create a soft link from Apache folder /var/www to this specific folder.
+<p>When you execute above command following output will be displayed, which gives you an indication how files are concatenated. While accessing the web app via browser, keep an eye on Network tab, to see how files are downloaded.</p>
 
-When you execute above command following output will be displayed, which gives you an indication how files are concatenated.
-While accessing the web app via browser, keep an eye on Network tab, to see how files are downloaded.
-
-Tracing dependencies for: main
+<pre>Tracing dependencies for: main
 
 Tracing dependencies for: other
 
@@ -43,3 +41,4 @@ media/js/modules/order/model.js
 media/js/modules/order/view.js
 media/js/modules/search/model.js
 media/js/modules/search/view.js
+</pre>
